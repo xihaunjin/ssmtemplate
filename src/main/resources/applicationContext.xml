@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 扫描service包下所有使用注解的类型 -->
+    <context:component-scan base-package="com.framework.ssm.service"/>
+    <!-- 配置数据库相关参数properties的属性：${url} -->
+    <!--<context:property-placeholder location="classpath:jdbc.properties"/>-->
+
+
+    <!--PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就是 BeanFactoryPostProcessor接口的一个实现。PropertyPlaceholderConfigurer可以将上下文（配置文 件）中的属性值放在另一个单独的标准java Properties文件中去。-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations" value="classpath:jdbc.properties"/>
+    </bean>
+
+    <!--数据源-链接数据库的基本信息,这里直接写,不放到jdbc.properties资源文件中-->
+    <!-- 阿里 druid数据库连接池 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <!-- 数据库基本信息配置 -->
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+        <property name="driverClassName" value="${driverClassName}"/>
+        <property name="filters" value="${filters}"/>
+        <!-- 最大并发连接数 -->
+        <property name="maxActive" value="${maxActive}"/>
+        <!-- 初始化连接数量 -->
+        <property name="initialSize" value="${initialSize}"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="${maxWait}"/>
+        <!-- 最小空闲连接数 -->
+        <property name="minIdle" value="${minIdle}"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}"/>
+        <property name="validationQuery" value="${validationQuery}"/>
+        <property name="testWhileIdle" value="${testWhileIdle}"/>
+        <property name="testOnBorrow" value="${testOnBorrow}"/>
+        <property name="testOnReturn" value="${testOnReturn}"/>
+        <property name="maxOpenPreparedStatements" value="${maxOpenPreparedStatements}"/>
+        <!-- 打开removeAbandoned功能 -->
+        <property name="removeAbandoned" value="${removeAbandoned}"/>
+        <!-- 1800秒，也就是30分钟 -->
+        <property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}"/>
+        <!-- 关闭abanded连接时输出错误日志 -->
+        <property name="logAbandoned" value="${logAbandoned}"/>
+    </bean>
+
+    <!-- 配置数据源,加载配置,也就是dataSource -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--mybatis的配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- 扫描model包 使用别名 -->
+        <!--<property name="typeAliasesPackage" value="com.framework.ssm.model"/>-->
+        <!--扫描 XXXmapper.xml映射文件,配置扫描的路径-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 给出需要扫描Dao接口包 -->
+        <property name="basePackage" value="com.framework.ssm.dao"/>
+        <!-- 注入sqlSessionFactory -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!--事务管理-->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入dataSource-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--开启事务注解扫描-->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+</beans>
