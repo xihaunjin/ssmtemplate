@@ -11,5 +11,13 @@ import java.util.List;
  * @since 2018/07/12
  */
 public interface IUserService {
-    public List<UserDO> getUser();
+    List<UserDO> getUser();
+
+    Integer deleteUserById(Integer id);
+
+    Integer insertUser(UserDO record);
+
+    UserDO getUserById(Integer id);
+
+    Integer updateUserById(UserDO record);
 }

@@ -13,17 +13,18 @@ import java.util.List;
  */
 @Repository("userDao")
 public interface IUserDao {
-    int deleteByPrimaryKey(Integer id);
+    Integer deleteByPrimaryKey(Integer id);
 
-    int insert(UserDO record);
+    Integer insert(UserDO record);
 
-    int insertSelective(UserDO record);
+    Integer insertSelective(UserDO record);
 
     UserDO selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(UserDO record);
+    Integer updateByPrimaryKeySelective(UserDO record);
 
-    int updateByPrimaryKey(UserDO record);
+    Integer updateByPrimaryKey(UserDO record);
+
     //自己添加的，已匹配Mapper中的Sql
     List<UserDO> selectAllUser();
 }

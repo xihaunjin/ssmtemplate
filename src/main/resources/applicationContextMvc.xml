@@ -10,18 +10,51 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!-- 告知Spring，我们启用注解驱动 -->
+    <!-- 告知Spring，启用注解驱动 -->
     <mvc:annotation-driven/>
     <!-- org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler，
     它会像一个检查员，对进入DispatcherServlet的URL进行筛查，如果发现是静态资源的请求，
     就将该请求转由Web应用服务器默认的Servlet处理，如果不是静态资源的请求，才由DispatcherServlet继续处理。 -->
     <mvc:default-servlet-handler/>
     <!-- 指定要扫描的包的位置 -->
-    <context:component-scan base-package="com.framework.ssm.controller" />
+    <context:component-scan base-package="com.framework.ssm.controller"/>
+
+    <!-- ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">-->
+    <!--</bean>-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
+        <!--<property name="messageConverters">-->
+            <!--<list>-->
+                <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
+        <!--<property name="messageConverters">-->
+            <!--<list>-->
+                <!--<ref bean="jsonHttpMessageConverter"/>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="jsonHttpMessageConverter"-->
+          <!--class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+        <!--<property name="supportedMediaTypes">-->
+            <!--<list>-->
+                <!--<value>application/json;charset=UTF-8</value>-->
+                <!--<value>text/html;charset=UTF-8</value>-->
+                <!--<value>application/x-www-form-urlencoded;charset=UTF-8</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
     <!-- 配置Spring MVC的视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <!-- 有时我们需要访问JSP页面,可理解为在控制器controller的返回值加前缀和后缀,变成一个可用的URL地址 -->
-    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <!-- 有时我们需要访问JSP页面,可理解为在控制器controller的返回值加前缀和后缀,变成一个可用的URL地址 -->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>

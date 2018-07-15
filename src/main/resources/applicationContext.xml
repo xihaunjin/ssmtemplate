@@ -9,9 +9,9 @@
     <!--<context:property-placeholder location="classpath:jdbc.properties"/>-->
 
 
-    <!--PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就是 BeanFactoryPostProcessor接口的一个实现。PropertyPlaceholderConfigurer可以将上下文（配置文 件）中的属性值放在另一个单独的标准java Properties文件中去。-->
+    <!--PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就是 BeanFactoryPostProcessor接口的一个实现。PropertyPlaceholderConfigurer可以将上下文（配置文件）中的属性值放在另一个单独的标准java Properties文件中去。-->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-    <property name="locations" value="classpath:jdbc.properties"/>
+        <property name="locations" value="classpath:jdbc.properties"/>
     </bean>
 
     <!--数据源-链接数据库的基本信息,这里直接写,不放到jdbc.properties资源文件中-->
