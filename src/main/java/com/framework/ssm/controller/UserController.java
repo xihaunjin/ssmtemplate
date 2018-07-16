@@ -26,35 +26,32 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
+    @ResponseBody
     @RequestMapping(value = "/list")
-    public void userList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String userList(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         List<UserDO> userList = this.userService.getUser();
-        response.getWriter().write(mapper.writeValueAsString(userList));
-        response.getWriter().close();
+        return mapper.writeValueAsString(userList);
     }
+
 
     @ResponseBody
     @RequestMapping(value = "/save")
     public void addUser(@RequestBody UserDO userDO, HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        Integer userId = Integer.valueOf(id);
-//        Integer useAge = Integer.valueOf(age);
-//        UserDO userDO = new UserDO();
-//        userDO.setId(userId);
-//        userDO.setAge(useAge);
-//        userDO.setName(name);
         Integer saveCount = this.userService.insertUser(userDO);
         response.getWriter().write(saveCount.toString());
     }
 
+    @ResponseBody
     @RequestMapping(value = "/update")
-    public void update(@RequestBody UserDO userDo,HttpServletRequest request, HttpServletResponse response){
+    public void update(@RequestBody UserDO userDo,HttpServletRequest request, HttpServletResponse response) throws IOException {
         Integer updateCount = this.userService.updateUserById(userDo);
+        response.getWriter().write(updateCount.toString());
     }
 
+    @ResponseBody
     @RequestMapping(value = "/delete/{id}")
     public void delete(@PathVariable("id") Integer id, HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        Integer userId = new Integer(id);
         Integer deleteCount = this.userService.deleteUserById(id);
         response.getWriter().write(deleteCount.toString());
     }

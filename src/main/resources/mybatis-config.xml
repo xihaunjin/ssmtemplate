@@ -3,7 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <!--之后用于测试-->
         <typeAlias type="com.framework.ssm.model.UserDO" alias="User" />
     </typeAliases>
 </configuration>

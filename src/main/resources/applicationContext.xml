@@ -5,16 +5,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- 扫描service包下所有使用注解的类型 -->
     <context:component-scan base-package="com.framework.ssm.service"/>
+
     <!-- 配置数据库相关参数properties的属性：${url} -->
-    <!--<context:property-placeholder location="classpath:jdbc.properties"/>-->
-
-
     <!--PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就是 BeanFactoryPostProcessor接口的一个实现。PropertyPlaceholderConfigurer可以将上下文（配置文件）中的属性值放在另一个单独的标准java Properties文件中去。-->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations" value="classpath:jdbc.properties"/>
     </bean>
 
-    <!--数据源-链接数据库的基本信息,这里直接写,不放到jdbc.properties资源文件中-->
     <!-- 阿里 druid数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <!-- 数据库基本信息配置 -->
