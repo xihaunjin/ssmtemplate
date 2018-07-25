@@ -4,5 +4,6 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.framework.ssm.model.UserDO" alias="User" />
+        <typeAlias type="com.framework.ssm.model.StaffDO" alias="Staff" />
     </typeAliases>
 </configuration>

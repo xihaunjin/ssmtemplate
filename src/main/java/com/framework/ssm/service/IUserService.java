@@ -20,4 +20,5 @@ public interface IUserService {
     UserDO getUserById(Integer id);
 
     Integer updateUserById(UserDO record);
+
 }

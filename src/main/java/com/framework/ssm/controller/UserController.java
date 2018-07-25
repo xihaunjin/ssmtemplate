@@ -2,6 +2,7 @@ package com.framework.ssm.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.framework.ssm.model.UserDO;
+import com.framework.ssm.service.IUserService;
 import com.framework.ssm.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,18 +21,18 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/api/user")
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private IUserService userService;
 
     @ResponseBody
     @RequestMapping(value = "/list")
-    public String userList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public List userList(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         List<UserDO> userList = this.userService.getUser();
-        return mapper.writeValueAsString(userList);
+        return userList;
     }
 
 
