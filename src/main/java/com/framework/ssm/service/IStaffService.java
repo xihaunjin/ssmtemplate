@@ -23,5 +23,7 @@ public interface IStaffService {
 
     Integer updateByPrimaryKey(StaffDO record);
 
+    Integer insertOrUpdateStaffInfo(StaffDO record);
+
     List<StaffDO> selectAllStaff();
 }

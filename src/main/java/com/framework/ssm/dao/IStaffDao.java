@@ -20,5 +20,7 @@ public interface IStaffDao {
 
     Integer updateByPrimaryKey(StaffDO record);
 
+    Integer insertOrUpdateStaffInfo(StaffDO record);
+
     List<StaffDO> selectAllStaff();
 }

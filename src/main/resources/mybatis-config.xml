@@ -6,4 +6,11 @@
         <typeAlias type="com.framework.ssm.model.UserDO" alias="User" />
         <typeAlias type="com.framework.ssm.model.StaffDO" alias="Staff" />
     </typeAliases>
+    <plugins>
+        <!-- com.github.pagehelper为PageHelper类所在包名 -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="reasonable" value="true"/>
+            <property name="rowBoundsWithCount" value="true"/>
+        </plugin>
+    </plugins>
 </configuration>
