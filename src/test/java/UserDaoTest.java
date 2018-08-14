@@ -1,5 +1,5 @@
-import com.framework.ssm.dao.IUserDao;
-import com.framework.ssm.model.UserDO;
+import com.framework.ssm.dao.IStaffDao;
+import com.framework.ssm.model.StaffDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration({"classpath:applicationContext.xml"})
 public class UserDaoTest {
     @Autowired
-    private IUserDao userDao;
+    private IStaffDao staffDao;
     @Test
     public void testGetUser(){
-        UserDO userDO = userDao.selectByPrimaryKey(1);
-        System.out.println(userDO.getName()+"---"+userDO.getAge());
+        StaffDO staffDO = staffDao.selectByPrimaryKey(1);
+        System.out.println(staffDO.getStaffId()+"---"+staffDO.getStaffName());
     }
 }

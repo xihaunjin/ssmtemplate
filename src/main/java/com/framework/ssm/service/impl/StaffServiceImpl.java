@@ -50,6 +50,11 @@ public class StaffServiceImpl implements IStaffService {
     }
 
     @Override
+    public Integer insertOrUpdateStaffInfo(StaffDO record) {
+        return staffDao.insertOrUpdateStaffInfo(record);
+    }
+
+    @Override
     public List<StaffDO> selectAllStaff() {
         return staffDao.selectAllStaff();
     }

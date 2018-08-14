@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.framework.ssm.dao.IStaffDao">
-  <resultMap id="BaseResultMap" type="com.framework.ssm.model.StaffDO">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="staff_id" jdbcType="INTEGER" property="staffId" />
-    <result column="staff_name" jdbcType="VARCHAR" property="staffName" />
-    <result column="photo_url" jdbcType="VARCHAR" property="photoUrl" />
-    <result column="sex" jdbcType="INTEGER" property="sex" />
-    <result column="office" jdbcType="VARCHAR" property="office" />
-    <result column="arrival_time" jdbcType="DATE" property="arrivalTime" />
-    <result column="company" jdbcType="VARCHAR" property="company" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="qq" jdbcType="VARCHAR" property="qq" />
-    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.framework.ssm.model.StaffDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="staff_id" jdbcType="INTEGER" property="staffId"/>
+        <result column="staff_name" jdbcType="VARCHAR" property="staffName"/>
+        <result column="photo_url" jdbcType="VARCHAR" property="photoUrl"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
+        <result column="office" jdbcType="VARCHAR" property="office"/>
+        <result column="arrival_time" jdbcType="DATE" property="arrivalTime"/>
+        <result column="company" jdbcType="VARCHAR" property="company"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="qq" jdbcType="VARCHAR" property="qq"/>
+        <result column="wechat" jdbcType="VARCHAR" property="wechat"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, staff_id, staff_name, photo_url, sex, office, arrival_time, company, phone, email, 
     qq, wechat, address, introduction
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from staff_info
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAllStaff" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from staff_info
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from staff_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectAllStaff" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from staff_info
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from staff_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.framework.ssm.model.StaffDO">
+    <insert id="insert" parameterType="com.framework.ssm.model.StaffDO">
     insert into staff_info (id, staff_id, staff_name, 
       photo_url, sex, office, 
       arrival_time, company, phone, 
@@ -48,143 +48,172 @@
       #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.framework.ssm.model.StaffDO">
-    insert into staff_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="staffId != null">
-        staff_id,
-      </if>
-      <if test="staffName != null">
-        staff_name,
-      </if>
-      <if test="photoUrl != null">
-        photo_url,
-      </if>
-      <if test="sex != null">
-        sex,
-      </if>
-      <if test="office != null">
-        office,
-      </if>
-      <if test="arrivalTime != null">
-        arrival_time,
-      </if>
-      <if test="company != null">
-        company,
-      </if>
-      <if test="phone != null">
-        phone,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="qq != null">
-        qq,
-      </if>
-      <if test="wechat != null">
-        wechat,
-      </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="introduction != null">
-        introduction,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="staffId != null">
-        #{staffId,jdbcType=INTEGER},
-      </if>
-      <if test="staffName != null">
-        #{staffName,jdbcType=VARCHAR},
-      </if>
-      <if test="photoUrl != null">
-        #{photoUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=BIT},
-      </if>
-      <if test="office != null">
-        #{office,jdbcType=VARCHAR},
-      </if>
-      <if test="arrivalTime != null">
-        #{arrivalTime,jdbcType=DATE},
-      </if>
-      <if test="company != null">
-        #{company,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="qq != null">
-        #{qq,jdbcType=VARCHAR},
-      </if>
-      <if test="wechat != null">
-        #{wechat,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null">
-        #{introduction,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.framework.ssm.model.StaffDO">
-    update staff_info
-    <set>
-      <if test="staffId != null">
+    <insert id="insertSelective" parameterType="com.framework.ssm.model.StaffDO">
+        insert into staff_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="staffId != null">
+                staff_id,
+            </if>
+            <if test="staffName != null">
+                staff_name,
+            </if>
+            <if test="photoUrl != null">
+                photo_url,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="office != null">
+                office,
+            </if>
+            <if test="arrivalTime != null">
+                arrival_time,
+            </if>
+            <if test="company != null">
+                company,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="qq != null">
+                qq,
+            </if>
+            <if test="wechat != null">
+                wechat,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="staffId != null">
+                #{staffId,jdbcType=INTEGER},
+            </if>
+            <if test="staffName != null">
+                #{staffName,jdbcType=VARCHAR},
+            </if>
+            <if test="photoUrl != null">
+                #{photoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=BIT},
+            </if>
+            <if test="office != null">
+                #{office,jdbcType=VARCHAR},
+            </if>
+            <if test="arrivalTime != null">
+                #{arrivalTime,jdbcType=DATE},
+            </if>
+            <if test="company != null">
+                #{company,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null">
+                #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat != null">
+                #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                #{introduction,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--数据存在则更新，不存在则添加-->
+    <insert id="insertOrUpdateStaffInfo" parameterType="com.framework.ssm.model.StaffDO">
+        insert into staff_info (id, staff_id, staff_name,
+        photo_url, sex, office,
+        arrival_time, company, phone,
+        email, qq, wechat,
+        address, introduction)
+        values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{staffName,jdbcType=VARCHAR},
+        #{photoUrl,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{office,jdbcType=VARCHAR},
+        #{arrivalTime,jdbcType=DATE}, #{company,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR},
+        #{address,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR})
+        ON DUPLICATE KEY UPDATE
         staff_id = #{staffId,jdbcType=INTEGER},
-      </if>
-      <if test="staffName != null">
         staff_name = #{staffName,jdbcType=VARCHAR},
-      </if>
-      <if test="photoUrl != null">
         photo_url = #{photoUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
         sex = #{sex,jdbcType=BIT},
-      </if>
-      <if test="office != null">
         office = #{office,jdbcType=VARCHAR},
-      </if>
-      <if test="arrivalTime != null">
         arrival_time = #{arrivalTime,jdbcType=DATE},
-      </if>
-      <if test="company != null">
         company = #{company,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="qq != null">
         qq = #{qq,jdbcType=VARCHAR},
-      </if>
-      <if test="wechat != null">
         wechat = #{wechat,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null">
-        introduction = #{introduction,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.framework.ssm.model.StaffDO">
+        introduction = #{introduction,jdbcType=VARCHAR}
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.framework.ssm.model.StaffDO">
+        update staff_info
+        <set>
+            <if test="staffId != null">
+                staff_id = #{staffId,jdbcType=INTEGER},
+            </if>
+            <if test="staffName != null">
+                staff_name = #{staffName,jdbcType=VARCHAR},
+            </if>
+            <if test="photoUrl != null">
+                photo_url = #{photoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=BIT},
+            </if>
+            <if test="office != null">
+                office = #{office,jdbcType=VARCHAR},
+            </if>
+            <if test="arrivalTime != null">
+                arrival_time = #{arrivalTime,jdbcType=DATE},
+            </if>
+            <if test="company != null">
+                company = #{company,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null">
+                qq = #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat != null">
+                wechat = #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.framework.ssm.model.StaffDO">
     update staff_info
     set staff_id = #{staffId,jdbcType=INTEGER},
       staff_name = #{staffName,jdbcType=VARCHAR},

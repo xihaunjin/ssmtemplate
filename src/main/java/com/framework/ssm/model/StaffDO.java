@@ -1,7 +1,6 @@
 package com.framework.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -18,6 +17,7 @@ public class StaffDO {
 
     private String office;
 
+    @JsonFormat(locale = "zh", timezone = "GMT+08", pattern = "yyyy-MM-dd")
     private Date arrivalTime;
 
     private String company;
@@ -82,8 +82,6 @@ public class StaffDO {
         this.office = office == null ? null : office.trim();
     }
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     public Date getArrivalTime() {
         return arrivalTime;
     }
@@ -146,5 +144,25 @@ public class StaffDO {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction == null ? null : introduction.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "StaffDO{" +
+                "id=" + id +
+                ", staffId=" + staffId +
+                ", staffName='" + staffName + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
+                ", sex=" + sex +
+                ", office='" + office + '\'' +
+                ", arrivalTime=" + arrivalTime +
+                ", company='" + company + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", qq='" + qq + '\'' +
+                ", wechat='" + wechat + '\'' +
+                ", address='" + address + '\'' +
+                ", introduction='" + introduction + '\'' +
+                '}';
     }
 }
