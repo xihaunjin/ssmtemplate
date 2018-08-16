@@ -29,6 +29,8 @@
         当是一个负数时或者没有指定时，则指示容器在该servlet被选择时才加载.正数值越小启动优先值越高  -->
         <load-on-startup>1</load-on-startup>
         <async-supported>true</async-supported>
+        <!--让Servlet支持文件上传-->
+        <multipart-config/>
     </servlet>
     <!--为DispatcherServlet建立映射-->
     <servlet-mapping>

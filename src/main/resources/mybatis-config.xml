@@ -3,7 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="com.framework.ssm.model.UserDO" alias="User" />
         <typeAlias type="com.framework.ssm.model.StaffDO" alias="Staff" />
     </typeAliases>
     <plugins>

@@ -19,11 +19,11 @@ public class Result {
     /*
      * @desc 状态码
      * */
-    private String code;
+    private Integer code;
     /*
      * @desc 状态 0成功 1失败
      * */
-    private int status = 0;
+    private Integer status = 0;
 
     private Map<String, Object> data = new HashMap<String, Object>();
 
@@ -31,10 +31,10 @@ public class Result {
     }
 
     public static Result getServiceError(){
-        return getServiceError("发生未知错误",(String)null);
+        return getServiceError("发生未知错误",(Integer)null);
     }
 
-    public static Result getServiceError(String message,String code){
+    public static Result getServiceError(String message,Integer code){
         Result result = new Result();
         result.setMsg(message);
         result.setCode(code);
@@ -45,12 +45,12 @@ public class Result {
     public static Result getSuccessResult() {
         Result result = new Result();
         result.setMsg("success");
-        result.setCode("200");
+        result.setCode(200);
         result.setStatus(0);
         return result;
     }
 
-    public static Result getSuccessResult(String message,String code) {
+    public static Result getSuccessResult(String message,Integer code) {
         Result result = new Result();
         result.setMsg(message);
         result.setCode(code);
@@ -58,7 +58,7 @@ public class Result {
         return result;
     }
 
-    public static Result getBusinessException(String message,String code) {
+    public static Result getBusinessException(String message,Integer code) {
         Result result = new Result();
         result.setMsg(message);
         result.setCode(code);
@@ -72,7 +72,7 @@ public class Result {
     }
 
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -88,11 +88,11 @@ public class Result {
         this.msg = msg;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
