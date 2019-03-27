@@ -1,0 +1,46 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/rabbit
+	http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 配置连接工厂 -->
+    <rabbit:connection-factory id="mqConnectionFactory"
+                               host="${mq.host}" port="${mq.port}" username="${mq.username}" password="${mq.password}" />
+
+    <!-- 定义mq管理 -->
+    <rabbit:admin connection-factory="mqConnectionFactory" />
+
+    <!-- 声明队列 -->
+    <rabbit:queue name="que_cat" auto-declare="true" durable="true" />
+    <rabbit:queue name="que_pig" auto-declare="true" durable="true" />
+
+    <!-- 定义交换机绑定队列（路由模式） -->
+    <rabbit:direct-exchange name="IExchange" id="IExchange">
+        <rabbit:bindings>
+            <rabbit:binding queue="que_cat" key="que_cat_key" />
+            <rabbit:binding queue="que_pig" key="que_pig_key" />
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!-- 消息对象json转换类 -->
+    <bean id="jsonMessageConverter"
+          class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter" />
+
+    <!-- 定义模版 -->
+    <rabbit:template id="rabbitTemplate"
+                     connection-factory="mqConnectionFactory" exchange="IExchange"
+                     message-converter="jsonMessageConverter" />
+
+    <!-- 定义消费者 -->
+    <bean name="catHandler" class="com.framework.ssm.consumer.CatHandler" />
+    <bean name="pigHandler" class="com.framework.ssm.consumer.PigHandler" />
+
+    <!-- 定义消费者监听队列 -->
+    <rabbit:listener-container connection-factory="mqConnectionFactory">
+        <rabbit:listener ref="catHandler" queues="que_cat" />
+        <rabbit:listener ref="pigHandler" queues="que_pig" />
+    </rabbit:listener-container>
+</beans>

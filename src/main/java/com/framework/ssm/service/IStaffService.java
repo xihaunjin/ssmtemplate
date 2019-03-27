@@ -1,6 +1,8 @@
 package com.framework.ssm.service;
 
+import com.framework.ssm.dto.StaffDTO;
 import com.framework.ssm.model.StaffDO;
+import com.framework.ssm.vo.StaffVO;
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ public interface IStaffService {
 
     Integer updateByPrimaryKey(StaffDO record);
 
-    Integer insertOrUpdateStaffInfo(StaffDO record);
+    Integer insertOrUpdateStaffInfo(StaffDTO record);
 
-    List<StaffDO> selectAllStaff();
+    List<StaffVO> selectAllStaff();
 }

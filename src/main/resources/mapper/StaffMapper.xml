@@ -5,6 +5,7 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="staff_id" jdbcType="INTEGER" property="staffId"/>
         <result column="staff_name" jdbcType="VARCHAR" property="staffName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="photo_url" jdbcType="VARCHAR" property="photoUrl"/>
         <result column="sex" jdbcType="INTEGER" property="sex"/>
         <result column="office" jdbcType="VARCHAR" property="office"/>
@@ -19,7 +20,7 @@
     </resultMap>
     <sql id="Base_Column_List">
     id, staff_id, staff_name, photo_url, sex, office, arrival_time, company, phone, email, 
-    qq, wechat, address, introduction
+    qq, wechat, address, introduction, password
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
@@ -41,12 +42,12 @@
       photo_url, sex, office, 
       arrival_time, company, phone, 
       email, qq, wechat, 
-      address, introduction)
-    values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{staffName,jdbcType=VARCHAR}, 
+      address, introduction, password)
+    values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{staffName,jdbcType=VARCHAR},
       #{photoUrl,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{office,jdbcType=VARCHAR}, 
       #{arrivalTime,jdbcType=DATE}, #{company,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR})
+      #{address,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.framework.ssm.model.StaffDO">
         insert into staff_info
@@ -93,6 +94,9 @@
             <if test="introduction != null">
                 introduction,
             </if>
+            <if test="password != null">
+                password,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -137,6 +141,9 @@
             <if test="introduction != null">
                 #{introduction,jdbcType=VARCHAR},
             </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
 
@@ -146,12 +153,12 @@
         photo_url, sex, office,
         arrival_time, company, phone,
         email, qq, wechat,
-        address, introduction)
+        address, introduction, password)
         values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{staffName,jdbcType=VARCHAR},
         #{photoUrl,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{office,jdbcType=VARCHAR},
         #{arrivalTime,jdbcType=DATE}, #{company,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
         #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR},
-        #{address,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR})
+        #{address,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
         ON DUPLICATE KEY UPDATE
         staff_id = #{staffId,jdbcType=INTEGER},
         staff_name = #{staffName,jdbcType=VARCHAR},
@@ -165,7 +172,8 @@
         qq = #{qq,jdbcType=VARCHAR},
         wechat = #{wechat,jdbcType=VARCHAR},
         address = #{address,jdbcType=VARCHAR},
-        introduction = #{introduction,jdbcType=VARCHAR}
+        introduction = #{introduction,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR}
     </insert>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.framework.ssm.model.StaffDO">
@@ -210,6 +218,9 @@
             <if test="introduction != null">
                 introduction = #{introduction,jdbcType=VARCHAR},
             </if>
+            <if test="password != null">
+                introduction = #{password,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -227,7 +238,8 @@
       qq = #{qq,jdbcType=VARCHAR},
       wechat = #{wechat,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      introduction = #{introduction,jdbcType=VARCHAR}
+      introduction = #{introduction,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

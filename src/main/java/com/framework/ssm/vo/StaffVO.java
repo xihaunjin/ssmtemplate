@@ -1,13 +1,17 @@
-package com.framework.ssm.model;
+package com.framework.ssm.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class StaffDO {
+/**
+ * 请填写类注释
+ *
+ * @author tailless
+ * @since 2019/03/22
+ */
+public class StaffVO {
     private Integer id;
-
-    private String password;
 
     private Integer staffId;
 
@@ -57,7 +61,7 @@ public class StaffDO {
     }
 
     public void setStaffName(String staffName) {
-        this.staffName = staffName == null ? null : staffName.trim();
+        this.staffName = staffName;
     }
 
     public String getPhotoUrl() {
@@ -65,7 +69,7 @@ public class StaffDO {
     }
 
     public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl == null ? null : photoUrl.trim();
+        this.photoUrl = photoUrl;
     }
 
     public Integer getSex() {
@@ -81,7 +85,7 @@ public class StaffDO {
     }
 
     public void setOffice(String office) {
-        this.office = office == null ? null : office.trim();
+        this.office = office;
     }
 
     public Date getArrivalTime() {
@@ -97,7 +101,7 @@ public class StaffDO {
     }
 
     public void setCompany(String company) {
-        this.company = company == null ? null : company.trim();
+        this.company = company;
     }
 
     public String getPhone() {
@@ -105,7 +109,7 @@ public class StaffDO {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -113,7 +117,7 @@ public class StaffDO {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getQq() {
@@ -121,7 +125,7 @@ public class StaffDO {
     }
 
     public void setQq(String qq) {
-        this.qq = qq == null ? null : qq.trim();
+        this.qq = qq;
     }
 
     public String getWechat() {
@@ -129,7 +133,7 @@ public class StaffDO {
     }
 
     public void setWechat(String wechat) {
-        this.wechat = wechat == null ? null : wechat.trim();
+        this.wechat = wechat;
     }
 
     public String getAddress() {
@@ -137,7 +141,7 @@ public class StaffDO {
     }
 
     public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+        this.address = address;
     }
 
     public String getIntroduction() {
@@ -145,26 +149,6 @@ public class StaffDO {
     }
 
     public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "StaffDO{" +
-                "id=" + id +
-                ", staffId=" + staffId +
-                ", staffName='" + staffName + '\'' +
-                ", photoUrl='" + photoUrl + '\'' +
-                ", sex=" + sex +
-                ", office='" + office + '\'' +
-                ", arrivalTime=" + arrivalTime +
-                ", company='" + company + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", qq='" + qq + '\'' +
-                ", wechat='" + wechat + '\'' +
-                ", address='" + address + '\'' +
-                ", introduction='" + introduction + '\'' +
-                '}';
+        this.introduction = introduction;
     }
 }

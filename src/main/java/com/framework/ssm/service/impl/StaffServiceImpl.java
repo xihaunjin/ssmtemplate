@@ -1,8 +1,12 @@
 package com.framework.ssm.service.impl;
 
+import com.framework.ssm.common.BeanMapper;
 import com.framework.ssm.dao.IStaffDao;
+import com.framework.ssm.dto.StaffDTO;
 import com.framework.ssm.model.StaffDO;
 import com.framework.ssm.service.IStaffService;
+import com.framework.ssm.vo.StaffVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,12 +54,15 @@ public class StaffServiceImpl implements IStaffService {
     }
 
     @Override
-    public Integer insertOrUpdateStaffInfo(StaffDO record) {
-        return staffDao.insertOrUpdateStaffInfo(record);
+    public Integer insertOrUpdateStaffInfo(StaffDTO record) {
+        StaffDO staffDO = BeanMapper.map(record,StaffDO.class);
+        return staffDao.insertOrUpdateStaffInfo(staffDO);
     }
 
     @Override
-    public List<StaffDO> selectAllStaff() {
-        return staffDao.selectAllStaff();
+    public List<StaffVO> selectAllStaff() {
+        List<StaffDO> staffDOList = staffDao.selectAllStaff();
+        List<StaffVO> staffVOList = BeanMapper.mapList(staffDOList,StaffDO.class,StaffVO.class);
+        return staffVOList;
     }
 }
